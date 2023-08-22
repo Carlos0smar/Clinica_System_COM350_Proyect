@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+      
+    <style>
+        /* Estilo personalizado para el div */
+        .colored-div {
+          background-color: #ffc107; /* Cambia este valor al color que desees */
+          padding: 15px; /* Añade un poco de espacio para que se vea mejor */
+        }
+        .colored {
+          background-color: #1e7ab8; /* Cambia este valor al color que desees */
+           /* Añade un poco de espacio para que se vea mejor */
+        }
+      </style>
+</head>
+  <body>
+
+    <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="colored ">
+                    <h2>Registro Medicos</h2>
+                </div>
+                <div class="card-body bg-dark-subtle">
+                    <form>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label ">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label ">Apellido</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="correo" name="correo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fecha-nacimiento" class="form-label">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" id="confirmar-contrasena" name="confirmar-contrasena" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contrasena" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmar-contrasena" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="confirmar-contrasena" name="confirmar-contrasena" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Especialidad" class="form-label">Especialidad</label>
+                            <input type="text" class="form-control" id="confirmar-contrasena" name="confirmar-contrasena" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
