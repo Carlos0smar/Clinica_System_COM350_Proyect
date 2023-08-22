@@ -22,9 +22,7 @@ if ($resultado->num_rows > 0) {
     $_SESSION['email'] = $fila['email'];
     $_SESSION['nivel'] = $fila['nivel'];
     // Redirecciona al inicio después de haber iniciado sesión
-    redirect = array("redirect" => "inicio.html");
-    echo json_encode(redirect);
-    // header("location:inicio.html");
+    header("location:ficha.html");
 } else {
 ?>
     Error contraseña no valida
