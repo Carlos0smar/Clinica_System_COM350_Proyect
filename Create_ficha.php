@@ -68,6 +68,15 @@
 </head>
 <body>
 
+<?php
+include('conexion.php');
+
+$sql = "SELECT id, apellido FROM medico WHERE  especialidad = 'Medico General'";
+$sql2 = "SELECT id, apellido FROM medico WHERE  especialidad = 'Medico General'";
+$resultado = $con->query($sql);
+$resultado2 = $con->query($sql2);
+?>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-4">
@@ -77,39 +86,35 @@
                 </div>
                 <div class="card-body">
                     <form>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre completo</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
-                        </div>
-                         
+                        </div> -->
+                        
                         <div class="contenedor">
-                            <label for="fecha"  class="form-label">Fecha de reserva</label>
-                            <input type="date" class="form-control" id="fecha" name="fecha" required>
-                        </div>
-
-                        <div class="contenedor">
-                            <label for="nombre" class="form-label">Hora:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label for="nombre" class="form-label" required>Hora:</label>
+                            <input type="time" class="form-control" id="nombre" name="nombre" required>
                         </div>
 
-
-                        <div class="contenedor">
+                        <!-- <div class="contenedor">
                             <label for="nombre" class="form-label">Celular:</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
-                        </div>
+                        </div> -->
+
                         <div class="contenedor">
-                            <label for="especialidad" class="form-label">Especialidad médica</label>
-                            <select class="form-select" id="especialidad" name="especialidad" required>
-                                <option value="">Seleccione una especialidad</option>
-                                <option value="cardiologia">Cardiología</option>
-                                <option value="dermatologia">Dermatología</option>
-                                <option value="oftalmologia">Oftalmología</option>
-                                <!-- Agrega más opciones de especialidades -->
+                            <label for="medico" class="form-label" required>Médico</label>
+                            <select class="form-select" id="medico" name="medico" required>
+                            <?php while ($medico = $resultado->fetch_assoc()){
+                                ?>
+                                <option value="<?php echo $medico['id']?>"><?php echo $medico['apellido'];?> </option>
+                            <?php
+                            }?>
                             </select>
                         </div>
 
                         <button type="submit" class="btn btn-primary">hacer cita</button>
                     </form>
+                    
                 </div>
 
                 <div class="contenedor2">
@@ -118,13 +123,38 @@
                     </div>
                     <span> <h3>Horario</h3></span>
                     <h4 class="mb-3">Horario de trabajo</h4>
-                    <ul class="w-hours list-unstyled">
-                        <li class="d-flex justify-content-between">Sun - Wed : <span>8:00 - 17:00</span></li>
-                        <li class="d-flex justify-content-between">Thu - Fri : <span>9:00 - 17:00</span></li>
-                        <li class="d-flex justify-content-between">Sat - sun : <span>10:00 - 17:00</span></li>
-                    </ul>
+                        <?php 
+                        $horas = array(   "08:00 AM",
+                        "09:00 AM",
+                        "10:00 AM",
+                        "11:00 AM",
+                        "12:00 PM",
+                        "01:00 PM",
+                        "02:00 PM",
+                        "03:00 PM",
+                        "04:00 PM",
+                        "05:00 PM");
+                        ?>
+                    <table style='border: 1px solid black'><?php
+                        if ($resultado2->num_rows > 0) {
+                        ?>
+                            <?php 
+                            while ($medico2 = $resultado2->fetch_assoc()){?>
+                                <tr style='border: 1px solid black'>
+                                    <th><?php echo $medico2['apellido']?></th>
+                                </tr>
+                            <?php   
+                            }?>
+                            <?php 
+                                foreach ($horas as $hora){
+                                ?>
+                                <tr style='border: 1px solid black'><td style='border: 1px solid black'><?php echo $hora;?></td> </tr>
+                            <?php 
+                                } ?>
+                            <?php
+                        }?>
+                    </table>
                 </div>
-
             </div>
         </div>
     </div>
