@@ -18,7 +18,8 @@ VALUES ('$nombre', '$apellido', '$edad', '$telefono', '$informacion', '$especial
 // echo $sql;
 
 if ($con->query($sql) === TRUE) {
-    echo "Se creo el registro correctamente";
+    // echo "Se creo el registro correctamente";
+    header("location:readMedico.php");
 } else {
     echo "Error: " . $sql . "<br>" . $con->error;
 }
@@ -26,4 +27,4 @@ if ($con->query($sql) === TRUE) {
 $con->close();
 ?>
 
-<meta http-equiv="refresh" content="3; url=read.php" />
+<!-- <meta http-equiv="refresh" content="3; url=read.php" /> -->

@@ -11,6 +11,7 @@ $resultado = $con->query($sql);
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <h1 style = "text-align: center;"> MEDICOS</h1>
     <?php
     if ($resultado->num_rows > 0) {
     ?>
@@ -36,6 +37,10 @@ $resultado = $con->query($sql);
                 </tr>
             <?php } ?>
         </table>
+        <a href="registro_m.html" style = "margin: 10px;">
+        <button>Añadir Nuevo Médico</button>
+        </a>
+        <!-- <button type="button" action="registro_m.html"></button> -->
     <?php
     } else {
         echo "La tabla no tiene datos que mostrar";
