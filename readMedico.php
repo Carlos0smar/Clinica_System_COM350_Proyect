@@ -1,10 +1,18 @@
 <?php
 include('conexion.php');
 $sql = "SELECT id, nombre, apellido, edad, telefono, informacion, especialidad, email FROM medico";
-//echo $sql;
 $resultado = $con->query($sql);
+?>
 
-if ($resultado->num_rows > 0) {
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Título de tu página</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <?php
+    if ($resultado->num_rows > 0) {
     ?>
         <table>
             <tr>
@@ -14,12 +22,11 @@ if ($resultado->num_rows > 0) {
                 <th>Teléfono</th>
                 <th>Email</th>
                 <th>Especialidad</th>
-                <th>informacion</th>
+                <th>Información</th>
             </tr>
-            <?php while ($row = $resultado->fetch_assoc()) {
-            ?>
+            <?php while ($row = $resultado->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $row['nombre'] ?> </td>
+                    <td><?php echo $row['nombre'] ?></td>
                     <td><?php echo $row['apellido'] ?></td>
                     <td><?php echo $row['edad'] ?></td>
                     <td><?php echo $row['telefono'] ?></td>
@@ -29,15 +36,12 @@ if ($resultado->num_rows > 0) {
                 </tr>
             <?php } ?>
         </table>
-        <!-- <div id="formInsertar">
-            <button type="button" id="inserta" onclick="cargarContenidoFetch('forminsertar.html')">Insertar</button>
-        </div>
-        <script src="ajax.js"></script> -->
     <?php
-} else {
-    echo "la tabla no tiene datos que mostrar";
-}
+    } else {
+        echo "La tabla no tiene datos que mostrar";
+    }
 
-// echo json_encode($medico, JSON_UNESCAPED_UNICODE);
-$con->close();
-?>
+    $con->close();
+    ?>
+</body>
+</html>

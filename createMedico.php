@@ -14,7 +14,7 @@ $email=$_POST['email'];
 
 
 $sql="INSERT into medico (nombre, apellido, edad, telefono, informacion,especialidad, email )
-VALUES ('$nombre_usuario', '$nombre', '$apellido', '$edad', '$telefono', '$informacion', '$especialidad', '$email')";
+VALUES ('$nombre', '$apellido', '$edad', '$telefono', '$informacion', '$especialidad', '$email')";
 // echo $sql;
 
 if ($con->query($sql) === TRUE) {
