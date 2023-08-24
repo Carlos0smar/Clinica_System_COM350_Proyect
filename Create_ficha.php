@@ -28,10 +28,12 @@
         }
         .card-body {
             padding: 15px;
+          
         }
         .form-label {
             font-weight: bold;
             text-align: center; /* Si deseas centrar el contenido dentro del contenedor */
+            
         }
         .form-control {
             border-radius: 8px;
@@ -49,7 +51,9 @@
             border-radius: 8px;
             padding: 10px 20px;
             margin-top: 20px;
-            margin-left: 500px;
+            
+         
+        
         }
         .contenedor {
          
@@ -61,9 +65,61 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             padding: 10px 50px;
-            margin-top: 20px;
+            
             background-color: #007bff;
+          
          }
+         .contenedor3 {
+            margin-top: 40px;
+            
+         }
+         
+         .contenedor-principal {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background-color: #f0f0f0;
+        }
+
+        .contenedor-superpuesto {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        
+        
+
+        .contenedor-superpuesto:nth-child(2) {
+            top: 43%;
+            left: 35%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 60px;
+            border: 0px solid #ccc;
+        
+        } 
+        .contenedor-superpuesto2 {
+            position: absolute;
+            top: 8.5%;
+            left: 10%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    
+        .contenedorIm {
+         width: 300px;
+         height: 300px;
+        }
+        .contenedorIm2 {
+         width: 100px;
+         height: 20px;
+         margin-right: 20px;
+      }
     </style>
 </head>
 <body>
@@ -76,32 +132,38 @@ $sql2 = "SELECT id, apellido FROM medico WHERE  especialidad = 'Medico General'"
 $resultado = $con->query($sql);
 $resultado2 = $con->query($sql2);
 ?>
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card">
+
                 <div class="card-header">
-                    <h5 class="mb-0">Reserva en el Hospital</h5>
+                    <h2 class="mb-0" >Reserva en el Hospital</h2>
+                    
+                    <img src="imagenes/logo.png" class="contenedor-superpuesto2" alt="Mi Imagen"  >
                 </div>
+
                 <div class="card-body">
                     <form>
                         <!-- <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre completo</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div> -->
-                        
-                        <div class="contenedor">
-                            <label for="nombre" class="form-label" required>Hora:</label>
-                            <input type="time" class="form-control" id="nombre" name="nombre" required>
+                        <div class="contenedorIm">
+                           <img src="imagenes/22.jpg" alt="Mi Imagen"  width="1350" height="300">
                         </div>
-
-                        <!-- <div class="contenedor">
+                     <div class="contenedor-superpuesto">
+                          <div class="">
+                            <label for="nombre" class="form-label" required>Hora:</label>
+                            <input type="time" class="form-label" id="nombre" name="nombre"  required>
+                          </div>
+                        
+                         <!-- <div class="contenedor">
                             <label for="nombre" class="form-label">Celular:</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
-                        </div> -->
-
-                        <div class="contenedor">
+                         </div> -->
+                       
+                         <div class="contenedor3">
                             <label for="medico" class="form-label" required>Médico</label>
                             <select class="form-select" id="medico" name="medico" required>
                             <?php while ($medico = $resultado->fetch_assoc()){
@@ -110,9 +172,12 @@ $resultado2 = $con->query($sql2);
                             <?php
                             }?>
                             </select>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">hacer cita</button>
+                         </div>
+                        
+                            <div class="contenedor3">
+                               <button type="submit" class="btn btn-primary">hacer cita</button>
+                            </div>
+                     </div>
                     </form>
                     
                 </div>
@@ -122,7 +187,9 @@ $resultado2 = $con->query($sql2);
                         <i class="icofont-ui-clock"></i>
                     </div>
                     <span> <h3>Horario</h3></span>
-                    <h4 class="mb-3">Horario de trabajo</h4>
+                    <h4>Horario de trabajo</h4>
+                    <div class="contenedor3">
+                     <form>
                         <?php 
                         $horas = array(   "08:00 AM",
                         "09:00 AM",
@@ -135,6 +202,8 @@ $resultado2 = $con->query($sql2);
                         "04:00 PM",
                         "05:00 PM");
                         ?>
+                     </form>
+                    </div>    
                     <table style='border: 1px solid black'><?php
                         if ($resultado2->num_rows > 0) {
                         ?>
