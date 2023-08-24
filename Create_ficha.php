@@ -19,6 +19,8 @@
             overflow: hidden;
         }
         .card-header {
+            display: flex;
+            /* justify-content: space-between; */
             background-color: #007bff;
             color: white;
             text-align: center;
@@ -102,10 +104,12 @@
         
         } 
         .contenedor-superpuesto2 {
-            position: absolute;
-            top: 8.5%;
-            left: 10%;
-            transform: translate(-50%, -50%);
+            
+            /* position: relative; */
+            /* top: 8.5%; */
+            /* left: 10%; */
+            /* transform: translate(-50%, -50%); */
+            text-align: center;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 10px;
             border: 1px solid #ccc;
@@ -127,8 +131,8 @@
 <?php
 include('conexion.php');
 
-$sql = "SELECT id, apellido FROM medico WHERE  especialidad = 'Medico General'";
-$sql2 = "SELECT id, apellido FROM medico WHERE  especialidad = 'Medico General'";
+$sql = "SELECT id, apellido, nombre FROM medico WHERE  especialidad = 'Medico General'";
+$sql2 = "SELECT id, apellido, nombre FROM medico WHERE  especialidad = 'Medico General'";
 $resultado = $con->query($sql);
 $resultado2 = $con->query($sql2);
 ?>
@@ -138,17 +142,13 @@ $resultado2 = $con->query($sql2);
             <div class="card">
 
                 <div class="card-header">
-                    <h2 class="mb-0" >Reserva en el Hospital</h2>
+                    <img src="logo.png" class="contenedor-superpuesto2" alt="Mi Imagen" style="margin-right:600px;" >
+                    <h2 class="mb-0" style="display:inline; " >Reserva en el Hospital</h2>
                     
-                    <img src="logo.png" class="contenedor-superpuesto2" alt="Mi Imagen"  >
                 </div>
 
                 <div class="card-body">
                     <form>
-                        <!-- <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
-                        </div> -->
                         <div class="contenedorIm">
                            <img src="22.jpg" alt="Mi Imagen"  width="1350" height="300">
                         </div>
@@ -157,18 +157,12 @@ $resultado2 = $con->query($sql2);
                             <label for="nombre" class="form-label" required>Hora:</label>
                             <input type="time" class="form-label" id="nombre" name="nombre"  required>
                           </div>
-                        
-                         <!-- <div class="contenedor">
-                            <label for="nombre" class="form-label">Celular:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
-                         </div> -->
-                       
                          <div class="contenedor3">
                             <label for="medico" class="form-label" required>Médico</label>
                             <select class="form-select" id="medico" name="medico" required>
                             <?php while ($medico = $resultado->fetch_assoc()){
                                 ?>
-                                <option value="<?php echo $medico['id']?>"><?php echo $medico['apellido'];?> </option>
+                                <option value="<?php echo $medico['id']?>"><?php echo $medico['nombre']." ".$medico['apellido'];?> </option>
                             <?php
                             }?>
                             </select>
@@ -204,22 +198,30 @@ $resultado2 = $con->query($sql2);
                         ?>
                      </form>
                     </div>    
-                    <table style='border: 1px solid black'><?php
+                    <table style='border: 1px solid black; border-collapse: collapse; background-color: white; '><?php
                         if ($resultado2->num_rows > 0) {
                         ?>
+                            <tr style='border: 1px solid black'>
                             <?php 
+                            $count = 0;
                             while ($medico2 = $resultado2->fetch_assoc()){?>
-                                <tr style='border: 1px solid black'>
-                                    <th><?php echo $medico2['apellido']?></th>
-                                </tr>
-                            <?php   
+                                <th style="border: 1px solid black; padding: 6px;"> <?php echo $medico2['nombre']." ".$medico2['apellido']?></th>
+                                    <?php
+                                    $count++;
                             }?>
+                            </tr>
                             <?php 
-                                foreach ($horas as $hora){
+                            foreach ($horas as $hora){
                                 ?>
-                                <tr style='border: 1px solid black'><td style='border: 1px solid black'><?php echo $hora;?></td> </tr>
-                            <?php 
-                                } ?>
+                                <tr style='border: 1px solid black'>
+                                <?php
+                                    for($i = 0 ; $i< $count; $i++){?>
+
+                                        <td style='border: 1px solid black; padding: 6px; text-align: center;'><?php echo $hora;?></td> 
+                                        <?php
+                                    }?>
+                                </tr><?php
+                            } ?>
                             <?php
                         }?>
                     </table>
