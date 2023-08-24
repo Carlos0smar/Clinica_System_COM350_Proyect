@@ -140,7 +140,7 @@ $resultado2 = $con->query($sql2);
                 <div class="card-header">
                     <h2 class="mb-0" >Reserva en el Hospital</h2>
                     
-                    <img src="imagenes/logo.png" class="contenedor-superpuesto2" alt="Mi Imagen"  >
+                    <img src="logo.png" class="contenedor-superpuesto2" alt="Mi Imagen"  >
                 </div>
 
                 <div class="card-body">
@@ -150,7 +150,7 @@ $resultado2 = $con->query($sql2);
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div> -->
                         <div class="contenedorIm">
-                           <img src="imagenes/22.jpg" alt="Mi Imagen"  width="1350" height="300">
+                           <img src="22.jpg" alt="Mi Imagen"  width="1350" height="300">
                         </div>
                      <div class="contenedor-superpuesto">
                           <div class="">
