@@ -104,7 +104,8 @@
         
         } 
         .contenedor-superpuesto2 {
-            
+            display: flex;
+            align-items: center;
             /* position: relative; */
             /* top: 8.5%; */
             /* left: 10%; */
@@ -142,8 +143,8 @@ $resultado2 = $con->query($sql2);
             <div class="card">
 
                 <div class="card-header">
-                    <img src="logo.png" class="contenedor-superpuesto2" alt="Mi Imagen" style="margin-right:600px;" >
-                    <h2 class="mb-0" style="display:inline; " >Reserva en el Hospital</h2>
+                    <img src="logo.png" class="contenedor-superpuesto2" alt="Mi Imagen"  style="margin-right: 400px;">
+                    <h2 class="mb-0" style="text-align: center; " >Reserva en el Hospital</h2>
                     
                 </div>
 
