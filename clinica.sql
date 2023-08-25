@@ -98,15 +98,16 @@ CREATE TABLE `paciente` (
   `email` varchar(30) DEFAULT NULL,
   `medico_id` int(11) DEFAULT NULL,
   `administrador_id` int(11) DEFAULT NULL,
-  `nivel` varchar(60) DEFAULT 'Paciente'
+  `nivel` varchar(60) DEFAULT 'Paciente',
+  `historia` varchar(200)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `paciente`
 --
 
-INSERT INTO `paciente` (`id`, `password`, `nombre`, `apellido`, `genero`, `direccion`, `telefono`, `email`, `medico_id`, `administrador_id`, `nivel`) VALUES
-(50, '7070', 'Felipe', 'Perez', 'Masculino', 'Calle Mancesped 22', 70707070, 'fperez@gmail.com', 1, 1, 'Paciente');
+INSERT INTO `paciente` (`id`, `password`, `nombre`, `apellido`, `genero`, `direccion`, `telefono`, `email`, `medico_id`, `administrador_id`, `nivel`, `historia`) VALUES
+(50, '7070', 'Felipe', 'Perez', 'Masculino', 'Calle Mancesped 22', 70707070, 'fperez@gmail.com', 1, 1, 'Paciente','Resfriado con dolor de gargant');
 
 --
 -- Índices para tablas volcadas
