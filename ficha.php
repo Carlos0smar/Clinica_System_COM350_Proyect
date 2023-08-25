@@ -20,7 +20,7 @@
                 <th scope="col">Apellido Doctor</th>
                 <th scope="col">Telefono Doctor</th>
                 <th scope="col">Fecha</th>
-                <th scope="col"></th>
+                <!-- <th scope="col"></th> -->
               </tr>
             </thead>
             <tbody>

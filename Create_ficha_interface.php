@@ -155,12 +155,12 @@ $resultado2 = $con->query($sql2);
                         </div>
                      <div class="contenedor-superpuesto">
                           <div class="">
-                            <label for="nombre" class="form-label" required>Hora:</label>
-                            <input type="time" class="form-label" id="nombre" name="nombre"  required>
+                            <label for="hora" class="form-label" required>Hora:</label>
+                            <input type="time" class="form-label" id="hora" name="hora"  required>
                           </div>
                          <div class="contenedor3">
                             <label for="medico" class="form-label" required>Médico</label>
-                            <select class="form-select" id="medico" name="medico" required>
+                            <select class="form-select" id="id_medico" name="medico" required>
                             <?php while ($medico = $resultado->fetch_assoc()){
                                 ?>
                                 <option value="<?php echo $medico['id']?>"><?php echo $medico['nombre']." ".$medico['apellido'];?> </option>
@@ -184,7 +184,7 @@ $resultado2 = $con->query($sql2);
                     <span> <h3>Horario</h3></span>
                     <h4>Horario de trabajo</h4>
                     <div class="contenedor3">
-                     <form>
+                     <form method="POST"action="createFicha.php">
                         <?php 
                         $horas = array(   "08:00 AM",
                         "09:00 AM",

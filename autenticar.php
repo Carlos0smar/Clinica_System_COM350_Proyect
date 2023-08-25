@@ -21,8 +21,10 @@ if ($resultado->num_rows > 0) {
     $_SESSION['apellido'] = $fila['apellido'];
     $_SESSION['email'] = $fila['email'];
     $_SESSION['nivel'] = $fila['nivel'];
+    if($_SESSION['nivel'] == 'Paciente'){
+        header("location:ficha.html");
+    }
     // Redirecciona al inicio después de haber iniciado sesión
-    header("location:ficha.html");
 } else {
 ?>
     Error contraseña no valida

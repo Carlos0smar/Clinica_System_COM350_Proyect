@@ -3,15 +3,15 @@
 include('conexion.php');
 
 // se recupera el id del select de médicos
-$medico_id=$_POST['medico_id'];
-$fecha=$_POST['fecha'];
+$hora=$_POST['hora'];
+$medico_id=$_POST['medico'];
 $paciente_id = $_SESSION['id']
 $estado = $_POST['estado']
 
 //echo $sql;
 
-$sql="INSERT into citas (paciente_id, medico_id, fechaCita, estado)
-VALUES ('$paciente_id', '$medico_id', '$fechaCita', '$estado')";
+$sql="INSERT into citas (paciente_id, medico_id, fechaCita)
+VALUES ('$paciente_id', '$medico_id', '$hora')";
 // echo $sql;
 
 if ($con->query($sql) === TRUE) {
