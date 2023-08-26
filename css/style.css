@@ -852,7 +852,7 @@ a:focus {
 .testimonial {
   position: relative;
 }
-.testimonial:before {
+/* .testimonial:before {
   width: 48%;
   height: 100%;
   top: 0;
@@ -860,7 +860,7 @@ a:focus {
   position: absolute;
   content: "";
   background: url("../images/bg/bg-2.jpg") no-repeat 50% 50%;
-}
+} */
 .testimonial .slick-dots {
   text-align: left;
 }

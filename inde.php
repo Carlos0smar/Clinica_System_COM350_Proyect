@@ -37,9 +37,16 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
+  <script src="js/fetch.js"></script>
 </head>
 
 <body id="top">
+
+<?php
+include('conexion.php');
+session_start();
+
+?>
 
 <header>
 	<div class="header-top-bar">
@@ -75,10 +82,20 @@
 
 			<div class="collapse navbar-collapse" id="navbarmain">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
-
+					<li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
+					<!-- BUTTON as Paciente -->
+					<?php
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] !== 'Paciente') {?>
+							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Create_ficha_interface.php')">Ficha</a></li>
+						<?php   
+					}?>
+					<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+					<!-- BUTTON as Administrador -->
+					<?php
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] !== 'Administrador') {?>
+							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('readMedico.php')">Medicos</a></li>
+						<?php
+					}?>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Department <i class="icofont-thin-down"></i></a>
@@ -107,7 +124,7 @@
 
 							<li class="dropdown dropdown-submenu dropleft">
 								<a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
-			
+						
 								<ul class="dropdown-menu" aria-labelledby="dropdown0501">
 									<li><a class="dropdown-item" href="index.html">Submenu 01</a></li>
 									<li><a class="dropdown-item" href="index.html">Submenu 02</a></li>
@@ -125,255 +142,88 @@
 						</ul>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+					<?php
+					if (!isset($_SESSION['nivel'])) {?>
+						<div class="btn-container ">
+							<!-- bootones para el login y singup -->
+							<button type="button" class="btn btn-main-2 btn-icon btn-round-full" data-toggle="modal" data-target="#modal_login">Log In</button>
+							<button button="button" class="btn btn-main-2 btn-icon btn-round-full" data-toggle="modal" data-target="#modal_singUp">Sign UP </button>
+							<!-- Modal LOGIN-->
+							<div class="modal fade" id="modal_login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">LOG IN</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form action="javascript: loginFetch()" id="formLogin">
+												<div class="mb-3">
+													<label for="email" class="form-label">Email</label>
+													<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+												</div>
+												<div class="mb-3">
+													<label for="password" class="form-label">Password</label>
+													<input type="password" class="form-control" id="password" name="password">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+													<button type="submit" class="btn btn-primary">Log in</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Modal SingUP-->
+							<div class="modal fade" id="modal_singUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">SING UP</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="mb-3">
+													<label for="email" class="form-label">Email</label>
+													<input type="email" class="form-control" id="email_sign_up" aria-describedby="emailHelp">
+												</div>
+												<div class="mb-3">
+													<label for="password" class="form-label">Password</label>
+													<input type="password" class="form-control" id="password_sing_up">
+												</div>
+												<div class="mb-3">
+													<label for="name" class="form-label">Name</label>
+													<input type="text" class="form-control" id="name">
+												</div>
+												<div class="mb-3">
+													<label for="phone_number" class="form-label">Phone Number</label>
+													<input type="number" class="form-control" id="phone_number">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-primary">Register</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php
+					}?>
 				</ul>
 			</div>
 		</div>
 	</nav>
 </header>
 
-<section class="page-title bg-1">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="block text-center">
-          <span class="text-white">About Us</span>
-          <h1 class="text-capitalize mb-5 text-lg">About Us</h1>
 
-          <!-- <ul class="list-inline breadcumb-nav">
-            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
-            <li class="list-inline-item"><span class="text-white">/</span></li>
-            <li class="list-inline-item"><a href="#" class="text-white-50">About Us</a></li>
-          </ul> -->
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="container"id="contenido">
 
-<section class="section about-page">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-4">
-				<h2 class="title-color">Personal care for your healthy living</h2>
-			</div>
-			<div class="col-lg-8">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, quod laborum alias. Vitae dolorum, officia sit! Saepe ullam facere at, consequatur incidunt, quae esse, quis ut reprehenderit dignissimos, libero delectus.</p>
-				<img src="images/about/sign.png" alt="" class="img-fluid">
-			</div>
-		</div>
-	</div>
-</section>
+</div>
 
-<section class="fetaure-page ">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-3 col-md-6">
-				<div class="about-block-item mb-5 mb-lg-0">
-					<img src="images/about/about-1.jpg" alt="" class="img-fluid w-100">
-					<h4 class="mt-3">Healthcare for Kids</h4>
-					<p>Voluptate aperiam esse possimus maxime repellendus, nihil quod accusantium .</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="about-block-item mb-5 mb-lg-0">
-					<img src="images/about/about-2.jpg" alt="" class="img-fluid w-100">
-					<h4 class="mt-3">Medical Counseling</h4>
-					<p>Voluptate aperiam esse possimus maxime repellendus, nihil quod accusantium .</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="about-block-item mb-5 mb-lg-0">
-					<img src="images/about/about-3.jpg" alt="" class="img-fluid w-100">
-					<h4 class="mt-3">Modern Equipments</h4>
-					<p>Voluptate aperiam esse possimus maxime repellendus, nihil quod accusantium .</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="about-block-item">
-					<img src="images/about/about-4.jpg" alt="" class="img-fluid w-100">
-					<h4 class="mt-3">Qualified Doctors</h4>
-					<p>Voluptate aperiam esse possimus maxime repellendus, nihil quod accusantium .</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="section awards">
-	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-lg-4">
-				<h2 class="title-color">Our Doctors achievements </h2>
-				<div class="divider mt-4 mb-5 mb-lg-0"></div>
-			</div>
-			<div class="col-lg-8">
-				<div class="row">
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="award-img">
-							<img src="images/about/3.png" alt="" class="img-fluid">
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="award-img">
-							<img src="images/about/4.png" alt="" class="img-fluid">
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="award-img">
-							<img src="images/about/1.png" alt="" class="img-fluid">
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="award-img">
-							<img src="images/about/2.png" alt="" class="img-fluid">
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="award-img">
-							<img src="images/about/5.png" alt="" class="img-fluid">
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="award-img">
-							<img src="images/about/6.png" alt="" class="img-fluid">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="section team">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-6">
-				<div class="section-title text-center">
-					<h2 class="mb-4">Meet Our Specialist</h2>
-					<div class="divider mx-auto my-4"></div>
-					<p>Today’s users expect effortless experiences. Don’t let essential people and processes stay stuck in the past. Speed it up, skip the hassles</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="team-block mb-5 mb-lg-0">
-					<img src="images/team/1.jpg" alt="" class="img-fluid w-100">
-
-					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="doctor-single.html">John Marshal</a></h4>
-						<p>Internist, Emergency Physician</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="team-block mb-5 mb-lg-0">
-					<img src="images/team/2.jpg" alt="" class="img-fluid w-100">
-
-					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="doctor-single.html">Marshal Root</a></h4>
-						<p>Surgeon, Сardiologist</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="team-block mb-5 mb-lg-0">
-					<img src="images/team/3.jpg" alt="" class="img-fluid w-100">
-
-					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="doctor-single.html">Siamon john</a></h4>
-						<p>Internist, General Practitioner</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="team-block">
-					<img src="images/team/4.jpg" alt="" class="img-fluid w-100">
-
-					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="doctor-single.html">Rishat Ahmed</a></h4>
-						<p>Orthopedic Surgeon</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="section testimonial">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 offset-lg-6">
-				<div class="section-title">
-					<h2 class="mb-4">What they say about us</h2>
-					<div class="divider  my-4"></div>
-				</div>
-			</div>
-		</div>
-		<div class="row align-items-center">
-			<div class="col-lg-6 testimonial-wrap offset-lg-6">
-				<div class="testimonial-block">
-					<div class="client-info ">
-						<h4>Amazing service!</h4>
-						<span>John Partho</span>
-					</div>
-					<p>
-						They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-					</p>
-					<i class="icofont-quote-right"></i>
-					
-				</div>
-
-				<div class="testimonial-block">
-					<div class="client-info">
-						<h4>Expert doctors!</h4>
-						<span>Mullar Sarth</span>
-					</div>
-					<p>
-						They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-					</p>
-					<i class="icofont-quote-right"></i>
-				</div>
-
-				<div class="testimonial-block">
-					<div class="client-info">
-						<h4>Good Support!</h4>
-						<span>Kolis Mullar</span>
-					</div>
-					<p>
-						They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-					</p>
-					<i class="icofont-quote-right"></i>
-				</div>
-
-				<div class="testimonial-block">
-					<div class="client-info">
-						<h4>Nice Environment!</h4>
-						<span>Partho Sarothi</span>
-					</div>
-					<p>
-						They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-					</p>
-					<i class="icofont-quote-right"></i>
-				</div>
-
-				<div class="testimonial-block">
-					<div class="client-info">
-						<h4>Modern Service!</h4>
-						<span>Kolis Mullar</span>
-					</div>
-					<p>
-						They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-					</p>
-					<i class="icofont-quote-right"></i>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 <!-- footer Start -->
 <footer class="footer section gray-bg">
 	<div class="container">

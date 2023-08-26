@@ -19,15 +19,16 @@
                 <th scope="col">Nombre Doctor</th>
                 <th scope="col">Apellido Doctor</th>
                 <th scope="col">Telefono Doctor</th>
-                <th scope="col">Fecha</th>
+                <th scope="col">Hora</th>
                 <!-- <th scope="col"></th> -->
               </tr>
             </thead>
             <tbody>
                 <?php
+                session_start();
                 include "conexion.php";
-                $medico_id=$_POST['medico_id'];
-                $fecha=$_POST['fecha'];
+                // $medico_id=$_POST['medico_id'];
+                // $fecha=$_POST['fecha'];
                 $paciente_id = $_SESSION['id'];
                 $sql = "SELECT m.nombre as 'Nombre_Medico', m.apellido as 'Apellido_Medico', m.telefono as 'Telefono_Medico', c.fechacita as 'Fecha' FROM medico m 
                 INNER JOIN citas c ON c.medico_id = m.id INNER JOIN paciente p ON c.paciente_id = '$paciente_id' WHERE c.medico_id = m.id and c.paciente_id = '$paciente_id'";
@@ -39,7 +40,7 @@
                             <td><?= $datos['Apellido_Medico'] ?></td>
                             <td><?= $datos['Telefono_Medico'] ?></td>
                             <td><?= $datos['Fecha'] ?></td>
-                            <td><button type="button" class="btn btn-primary">Editar</button></td> 
+                            <!-- <td><button type="button" class="btn btn-primary">Editar</button></td>  -->
                         </tr>
                     <?php }     
                 }?>

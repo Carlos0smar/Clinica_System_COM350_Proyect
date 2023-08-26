@@ -37,7 +37,7 @@ $resultado = $con->query($sql);
                 </tr>
             <?php } ?>
         </table>
-        <a href="registro_m.html" style = "margin: 10px;">
+        <a href="javascript: cargarContenido('registro_m.html')" style = "margin: 10px;">
         <button>Añadir Nuevo Médico</button>
         </a>
         <!-- <button type="button" action="registro_m.html"></button> -->
