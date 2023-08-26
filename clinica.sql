@@ -31,15 +31,16 @@ CREATE TABLE `administrador` (
   `id` int(11) NOT NULL,
   `password` varchar(60) DEFAULT NULL,
   `nombre` varchar(60) DEFAULT NULL,
-  `nivel` varchar(60) DEFAULT 'Administrador'
+  `nivel` varchar(60) DEFAULT 'Administrador',
+  `email` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `administrador`
 --
 
-INSERT INTO `administrador` (`id`, `password`, `nombre`, `nivel`) VALUES
-(1, '6060', 'Jose', 'Administrador');
+INSERT INTO `administrador` (`id`, `password`, `nombre`, `nivel`,`email`) VALUES
+(1, '6060', 'Jose', 'Administrador','jgms@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -99,7 +100,7 @@ CREATE TABLE `paciente` (
   `medico_id` int(11) DEFAULT NULL,
   `administrador_id` int(11) DEFAULT NULL,
   `nivel` varchar(60) DEFAULT 'Paciente',
-  `historia` varchar(200)
+  `historia` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -108,6 +109,19 @@ CREATE TABLE `paciente` (
 
 INSERT INTO `paciente` (`id`, `password`, `nombre`, `apellido`, `genero`, `direccion`, `telefono`, `email`, `medico_id`, `administrador_id`, `nivel`, `historia`) VALUES
 (50, '7070', 'Felipe', 'Perez', 'Masculino', 'Calle Mancesped 22', 70707070, 'fperez@gmail.com', 1, 1, 'Paciente','Resfriado con dolor de gargant');
+
+--
+--
+create table `historia`(
+    `id` int NOT NULL,
+    `altura` varchar(60) DEFAULT NULL,
+    `peso` varchar(60) DEFAULT NULL,
+    `direccion` varchar(60) DEFAULT NULL,
+    `num_emergencia` varchar(60) DEFAULT NULL,
+    `tipo_sanngre` varchar(60) DEFAULT NULL,
+    `id_paciente` int NOT NULL
+);
+
 
 --
 -- Índices para tablas volcadas
@@ -141,6 +155,11 @@ ALTER TABLE `paciente`
   ADD KEY `medico_id` (`medico_id`),
   ADD KEY `administrador_id` (`administrador_id`);
 
+
+ALTER TABLE `historia`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_paciente` (`id_paciente`);
+
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
@@ -168,6 +187,7 @@ ALTER TABLE `medico`
 --
 ALTER TABLE `paciente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+ 
 
 --
 -- Restricciones para tablas volcadas
@@ -187,6 +207,12 @@ ALTER TABLE `paciente`
   ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`medico_id`) REFERENCES `medico` (`id`),
   ADD CONSTRAINT `paciente_ibfk_2` FOREIGN KEY (`administrador_id`) REFERENCES `administrador` (`id`);
 COMMIT;
+
+--
+-- Filtros para la tabla `historia`
+--
+ALTER TABLE `historia`
+  ADD CONSTRAINT `historia_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
