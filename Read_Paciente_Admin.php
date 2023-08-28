@@ -2,7 +2,7 @@
     <html> 
     <head>
         <title></title>
-        <link rel="stylesheet" type="text/css" href="Read_Paciente_Admin.css">
+        <link rel="stylesheet" type="text/css" href="css/Read_Paciente_Admin.css">
         <script src="https://kit.fontawesome.com/21b2631e7e.js" crossorigin="anonymous"></script>
     </head>
     <body>
