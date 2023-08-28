@@ -2,7 +2,7 @@
     <html> 
     <head>
         <title></title>
-        <link rel="stylesheet" type="text/css" href="Read_Citas_Medico.css">
+        <link rel="stylesheet" type="text/css" href="css/Read_Citas_Medico.css">
     </head>
     <body>
         <div class="table-container">
