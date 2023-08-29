@@ -23,7 +23,7 @@
                 <tbody>
                 <?php
     				include "conexion.php";
-					$sql = "SELECT nombre , apellido, genero, direccion, telefono, email From paciente";
+					$sql = "SELECT id, nombre , apellido, genero, direccion, telefono, email From paciente";
 					$resultado = $con->query($sql);
                     if ($resultado !== false) {
                         while($datos = $resultado -> fetch_assoc()) { ?>
@@ -34,8 +34,9 @@
                                 <td><?= $datos['direccion'] ?></td>
                                 <td><?= $datos['telefono'] ?></td>
                                 <td><?= $datos['email']?></td>
+                                
 						<td>
-                            <a href="Acciones" class="btn"><i class="fa-solid fa-notes-medical" style="color: #fcfcfc;"></i></a>
+                            <a href="javascript: formHistoria('<?php echo $datos['id']?>')" class="btn" style="background-color: white"> Registrar</a>
                             <a href="Acciones" class="btn"><i class="fa-solid fa-eye" style="color: #f0f0f0;"></i></i></a>
                         </td> 
 					</tr>

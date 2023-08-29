@@ -52,7 +52,16 @@
             </tbody>
           </table>
         </div>
-        <button type="button" class="btn btn-primary btn-lg">Aceptar</button>
+        <button onclick="inicio()"type="button" class="btn btn-primary btn-lg">Aceptar</button>
+        <script>
+            function inicio(){
+                var contenedor;
+                contenedor = document.getElementById('contenido');
+                fetch("inde.php")
+                    .then(response => response.text())
+                    .then(data => window.location.href = data);
+            }
+        </script>
         <button type="button" class="btn btn-secondary btn-lg">Atras</button>
         <!-- <meta http-equiv="refresh" content="3; url=read.php" /> -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

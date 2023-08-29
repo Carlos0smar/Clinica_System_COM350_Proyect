@@ -8,14 +8,42 @@ function cargarContenido(abrir) {
 }
 
 
-// function editarPersona(id) {
-//     var contenedor;
-//     contenedor = document.getElementById('datos');
-//     fetch('form_update.php?id=' + id)
-//         .then(response => response.text())
-//         .then(data => contenedor.innerHTML = data);
+function formHistoria(id) {
 
-// }
+  var contenedor;
+  contenedor = document.getElementById('contenido');
+  fetch('listar.php?id='+id)
+      .then(response => response.text())
+      .then(data => {
+        if (data.redirect) {
+        fetch("LEERHISTORIA.php")
+        .then(response => response.text())
+        .then(data => contenedor.innerHTML = data);
+        }
+      });
+}
+
+function redirecIndex() {
+
+  var contenedor;
+  contenedor = document.getElementById('contenido');
+  fetch("inde.php")
+      .then(response => response.text())
+      .then(data => window.location.href = data);
+}
+
+function cerrarSession() {
+  // console.log("entro");
+  var contenedor;
+  contenedor = document.getElementById('contenido');
+  fetch("cerrarsession.php")
+      .then(response => response.json())
+      .then(data => {
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        }
+      });
+}
 
 function registrarFicha() {
   // console.log("entro");

@@ -47,7 +47,6 @@ include('conexion.php');
 session_start();
 
 ?>
-
 <header>
 	<div class="header-top-bar">
 		<div class="container">
@@ -96,7 +95,22 @@ session_start();
 							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('readMedico.php')">Medicos</a></li>
 						<?php
 					}?>
-					<li class="nav-item dropdown">
+					<?php
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] !== 'Medico') {?>
+							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Read_Citas_Medico.php')">Citas Agendadas</a></li>
+						<?php
+					}?>
+					<?php
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] !== 'Administrador') {?>
+							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Read_Paciente_Admin.php')">Pacietes</a></li>
+						<?php
+					}?>
+					<?php
+					if (isset($_SESSION['nivel'])) {?>
+							<li class="nav-item"><a class="nav-link" href="javascript:cerrarSession()">Cerrar sesión</a></li>
+						<?php
+					}?>
+					<!-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Department <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown02">
@@ -112,9 +126,9 @@ session_start();
 								</ul>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 
-					<li class="nav-item dropdown">
+					<!-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown03">
@@ -131,7 +145,7 @@ session_start();
 								</ul>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="blog-sidebar.html" id="dropdown05" data-toggle="dropdown"

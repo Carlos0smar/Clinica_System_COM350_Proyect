@@ -14,7 +14,7 @@ include('conexion.php');
 
 $id = $_GET['id'];
 
-$sql = "SELECT paciente.id, paciente.nombre, paciente.apellido, genero, paciente.direccion, telefono FROM paciente LEFT JOIN historia ON paciente.id = historia.id where paceinte.id = $id ";
+$sql = "SELECT paciente.id, paciente.nombre, paciente.apellido, genero, paciente.direccion, telefono FROM paciente ";
 $resultado = $con->query($sql);
 
 if ($resultado->num_rows > 0) {
