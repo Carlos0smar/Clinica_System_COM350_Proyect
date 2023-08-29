@@ -9,9 +9,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     </head>
     <body>
-        <h1 class ="text-center p-3">CLINICA COM450</h1>
+        <h1 class =" p-3">Citas Medicas</h1>
     <div class="col-8 p-4">
-        <h2 class ="text-secondary">Citas Medicas</h2>
         <table class="table table-dark table-striped-columns">
             <thead class="bg-info">
               <tr>
@@ -52,17 +51,8 @@
             </tbody>
           </table>
         </div>
-        <button onclick="inicio()"type="button" class="btn btn-primary btn-lg">Aceptar</button>
-        <script>
-            function inicio(){
-                var contenedor;
-                contenedor = document.getElementById('contenido');
-                fetch("inde.php")
-                    .then(response => response.text())
-                    .then(data => window.location.href = data);
-            }
-        </script>
-        <button type="button" class="btn btn-secondary btn-lg">Atras</button>
+        <!-- <button onclick="inicio()"type="button" class="btn btn-primary btn-lg">Aceptar</button> -->
+        <a href="javascript: redirecIndex()"><button class="btn btn-primary btn-lg">Aceptar</button></a>
         <!-- <meta http-equiv="refresh" content="3; url=read.php" /> -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
      </body>

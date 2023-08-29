@@ -17,7 +17,8 @@
 	//echo $sql;
 	$resultado=$con->query($sql);
 	if ($resultado)
-		echo "se registro con exito";
+		$response = array('redirect' => 'MOSTRAR.HISTORIA.php');
+		echo json_encode($response);
 	else
 		echo "error";
 

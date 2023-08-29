@@ -17,7 +17,7 @@
                         <th>Direccion</th>
                         <th>Telefono</th>
                         <th>Email</th>
-                        <th>Acciones</th>
+                        <th>Historia</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,9 @@
                                 
 						<td>
                             <a href="javascript: formHistoria('<?php echo $datos['id']?>')" class="btn" style="background-color: white"> Registrar</a>
-                            <a href="Acciones" class="btn"><i class="fa-solid fa-eye" style="color: #f0f0f0;"></i></i></a>
+                            <!-- <a href="javascript: cargarContenido('<?php echo $datos['id']?>')" class="btn" style="background-color: white"> Mostrar</a> -->
+
+                            <!-- <a href="Acciones" class="btn"><i class="fa-solid fa-eye" style="color: #f0f0f0;"></i></i></a> -->
                         </td> 
 					</tr>
 				<?php }

@@ -14,22 +14,34 @@ function formHistoria(id) {
   contenedor = document.getElementById('contenido');
   fetch('listar.php?id='+id)
       .then(response => response.text())
-      .then(data => {
-        if (data.redirect) {
-        fetch("LEERHISTORIA.php")
-        .then(response => response.text())
-        .then(data => contenedor.innerHTML = data);
-        }
-      });
+      .then(data => { contenedor.innerHTML = data; });
 }
 
-function redirecIndex() {
+// function registrarHistoria() {
+//   // console.log("entro");
+//   var contenedor;
+//   contenedor = document.getElementById('contenido');
+//   var formulario = document.getElementById("formHistoria");
+//   var parametros = new FormData(formulario);
+//   fetch("insertar.php",
+//       {
+//           method: "POST",
+//           body: parametros
+//       })
+//       .then(response => response.json())
+//       .then(data => {
+//         if (data.redirect) {
+//           fetch("MOSTRARFICHA.php")
+//           .then(response => response.text())
+//           .then(data => contenedor.innerHTML = data);
+//         }
+//       });
+// }
 
-  var contenedor;
-  contenedor = document.getElementById('contenido');
-  fetch("inde.php")
+function redirecIndex(abrir) {
+  fetch("ficha.php")
       .then(response => response.text())
-      .then(data => window.location.href = data);
+      .then(data => window.location.href = 'inde.php');
 }
 
 function cerrarSession() {
