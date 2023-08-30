@@ -14,11 +14,11 @@ include('conexion.php');
 
 $id = $_GET['id'];
 
-$sql = "SELECT paciente.id, paciente.nombre, paciente.apellido, genero, paciente.direccion, telefono FROM paciente ";
+$sql = "SELECT id, nombre, apellido, genero, direccion, telefono FROM paciente WHERE id = '$id'";
 $resultado = $con->query($sql);
 
 if ($resultado->num_rows > 0) {
-    echo '<form action="javascript: registrarHistoria() id="fromHistoria" class="main-form">';
+    echo '<form action="javascript: registrarHistoria()"  id="formHistoria" class="main-form">';
     while ($row = $resultado->fetch_assoc()) {
         echo '<label class="form-label">Nombre:</label><br>';
         echo '<input type="text" class="form-field" name="nombre" value="' . $row['nombre'] . '" readonly><br>';

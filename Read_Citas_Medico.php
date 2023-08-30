@@ -18,8 +18,11 @@
                 </thead>
                 <tbody>
                 <?php
+                    session_start();
     				include "conexion.php";
-					$sql = "SELECT p.nombre as 'nombre_paciente' , p.apellido as 'apellido_paciente', p.email as 'email_paciente' , c.fechaCita as 'fecha' From paciente p INNER JOIN citas c ON c.paciente_id = p.id";
+                    $id = $_SESSION['id'];
+					$sql = "SELECT p.nombre as 'nombre_paciente' , p.apellido as 'apellido_paciente', p.email as 'email_paciente' , c.fechaCita as 'fecha' From paciente p INNER JOIN citas c ON c.paciente_id = p.id
+                    INNER JOIN medico m ON c.medico_id = m.id WHERE c.medico_id = $id";
 					$resultado = $con->query($sql);
                     if ($resultado !== false) {
                         while($datos = $resultado -> fetch_assoc()) { ?>

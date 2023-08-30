@@ -25,7 +25,8 @@
             <tbody>
                 <?php
                 session_start();
-                include "conexion.php";
+                include ("conexion.php");
+                // include ("permiso_paciente.php");
                 // $medico_id=$_POST['medico_id'];
                 // $fecha=$_POST['fecha'];
                 $paciente_id = $_SESSION['id'];

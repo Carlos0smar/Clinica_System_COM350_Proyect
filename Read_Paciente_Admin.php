@@ -36,9 +36,8 @@
                                 <td><?= $datos['email']?></td>
                                 
 						<td>
-                            <a href="javascript: formHistoria('<?php echo $datos['id']?>')" class="btn" style="background-color: white"> Registrar</a>
-                            <!-- <a href="javascript: cargarContenido('<?php echo $datos['id']?>')" class="btn" style="background-color: white"> Mostrar</a> -->
-
+                            <a href="javascript: formHistoria('<?php echo $datos['id']?>')" class="btn" style="background-color: white; margin: 5px;"> Registrar</a>
+                            <a href="javascript: MostrarHistoria('<?php echo $datos['id']?>')" class="btn" style="background-color: white"> Mostar</a>
                             <!-- <a href="Acciones" class="btn"><i class="fa-solid fa-eye" style="color: #f0f0f0;"></i></i></a> -->
                         </td> 
 					</tr>

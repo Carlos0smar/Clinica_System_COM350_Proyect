@@ -13,13 +13,19 @@
     $id=$_POST['id'];
 
 
-	$sql="INSERT INTO historia(altura,peso,direccion,num_emergencia,tipo_sanngre,id_paciente) VALUE('$estatura','$peso','$direccion','$telefono','$tipo_sangre','$id')";
-	//echo $sql;
+	$sql="INSERT INTO historia (altura,peso,direccion,num_emergencia,tipo_sanngre,id_paciente) VALUES('$estatura','$peso','$direccion','$telefono','$tipo_sangre','$id')";
+
 	$resultado=$con->query($sql);
-	if ($resultado)
-		$response = array('redirect' => 'MOSTRAR.HISTORIA.php');
+	if ($resultado){
+
+		$response = array('redirect' => 'Mostrar_Historia.php',
+							'id'=> $id);
 		echo json_encode($response);
+	}
 	else
+	{
+
 		echo "error";
+	}
 
 ?>

@@ -17,26 +17,37 @@ function formHistoria(id) {
       .then(data => { contenedor.innerHTML = data; });
 }
 
-// function registrarHistoria() {
-//   // console.log("entro");
-//   var contenedor;
-//   contenedor = document.getElementById('contenido');
-//   var formulario = document.getElementById("formHistoria");
-//   var parametros = new FormData(formulario);
-//   fetch("insertar.php",
-//       {
-//           method: "POST",
-//           body: parametros
-//       })
-//       .then(response => response.json())
-//       .then(data => {
-//         if (data.redirect) {
-//           fetch("MOSTRARFICHA.php")
-//           .then(response => response.text())
-//           .then(data => contenedor.innerHTML = data);
-//         }
-//       });
-// }
+
+function MostrarHistoria(id) {
+  console.log(id);
+  var contenedor;
+  contenedor = document.getElementById('contenido');
+  fetch('Mostrar_Historia.php?id='+id)
+      .then(response => response.text())
+      .then(data => { contenedor.innerHTML = data; });
+}
+
+
+function registrarHistoria() {
+  // console.log("entro");
+  var contenedor;
+  contenedor = document.getElementById('contenido');
+  var formulario = document.getElementById("formHistoria");
+  var parametros = new FormData(formulario);
+  fetch("insertar.php",
+      {
+          method: "POST",
+          body: parametros
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.redirect) {
+          fetch("Mostrar_Historia.php?id="+data.id)
+          .then(response => response.text())
+          .then(data => contenedor.innerHTML = data);
+        }
+      });
+}
 
 function redirecIndex(abrir) {
   fetch("ficha.php")
