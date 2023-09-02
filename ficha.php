@@ -31,7 +31,7 @@
                 // $fecha=$_POST['fecha'];
                 $paciente_id = $_SESSION['id'];
                 $sql = "SELECT m.nombre as 'Nombre_Medico', m.apellido as 'Apellido_Medico', m.telefono as 'Telefono_Medico', c.fechacita as 'Fecha' FROM medico m 
-                INNER JOIN citas c ON c.medico_id = m.id INNER JOIN paciente p ON c.paciente_id = '$paciente_id' WHERE c.medico_id = m.id and c.paciente_id = '$paciente_id'";
+                INNER JOIN citas c ON c.medico_id = m.id INNER JOIN paciente p ON c.paciente_id = p.id WHERE c.medico_id = m.id and c.paciente_id = '$paciente_id'";
                 $resultado = $con->query($sql);
                 if ($resultado->num_rows > 0) {
                     while($datos = $resultado -> fetch_assoc()) { ?>
