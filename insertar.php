@@ -10,10 +10,12 @@
     $estatura=$_POST['estatura'];
     $peso=$_POST['peso'];
     $descripcion=$_POST['descripcion'];
+    $alergia=$_POST['alergia'];
+    $fecha_nac=$_POST['fecha_nac'];
     $id=$_POST['id'];
 
 
-	$sql="INSERT INTO historia (altura,peso,direccion,num_emergencia,tipo_sanngre,id_paciente) VALUES('$estatura','$peso','$direccion','$telefono','$tipo_sangre','$id')";
+	$sql="INSERT INTO historia (altura,peso,direccion,num_emergencia,tipo_sanngre,id_paciente, alergia, fecha_nac) VALUES('$estatura','$peso','$direccion','$telefono','$tipo_sangre','$id', '$alergia', '$fecha_nac')";
 
 	$resultado=$con->query($sql);
 	if ($resultado){

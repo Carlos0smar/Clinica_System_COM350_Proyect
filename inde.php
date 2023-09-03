@@ -43,7 +43,7 @@
 <body id="top">
 
 <?php
-include('conexion.php');
+// include('conexion.php');
 session_start();
 
 ?>
@@ -84,24 +84,24 @@ session_start();
 					<li class="nav-item active"><a class="nav-link" href="inde.php">Home</a></li>
 					<!-- BUTTON as Paciente -->
 					<?php
-					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] !== 'Paciente') {?>
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 'paciente' ) {?>
 							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Create_ficha_interface.php')">Ficha</a></li>
 						<?php   
 					}?>
 					<!-- <li class="nav-item"><a class="nav-link" href="#">Services</a></li> -->
 					<!-- BUTTON as Administrador -->
 					<?php
-					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] !== 'Administrador') {?>
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 'administrador') {?>
 							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('readMedico.php')">Medicos</a></li>
 						<?php
 					}?>
 					<?php
-					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] !== 'Medico') {?>
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 'medico') {?>
 							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Read_Citas_Medico.php')">Citas Agendadas</a></li>
 						<?php
 					}?>
 					<?php
-					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] !== 'Administrador') {?>
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 'administrador') {?>
 							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Read_Paciente_Admin.php')">Pacietes</a></li>
 						<?php
 					}?>

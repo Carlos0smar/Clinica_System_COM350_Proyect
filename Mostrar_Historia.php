@@ -1,121 +1,124 @@
+<?php
+include('conexion.php');
+session_start();
+
+$id_paciente = $_GET['id'];
+
+$sql = "SELECT p.id, p.nombre as 'nombre_paciente', p.apellido as 'apellido_paciente', h.fecha_nac as 'fech_nacimiento', 
+h.peso as 'peso', h.altura as 'altura', h.tipo_sanngre as 'tipo_sangre', h.alergia as 'alergia'
+FROM historia h INNER JOIN paciente p ON h.id_paciente = p.id WHERE p.id = $id_paciente;";
+
+$resultado = $con->query($sql);
+
+if(isset($_SESSION['nivel'])){
+    
+    if($_SESSION['nivel'] == 'administrador'){
+        
+        $sql2 = "SELECT d.sintomas as 'sintoma', d.diagnostico as 'diagnostico', d.tratamiento as 'tratamiento', d.receta as 'receta', 
+        d.fecha as 'fecha_consulta', m.nombre as 'nombre_medico', m.apellido as 'apellido_medico' 
+        FROM historia h INNER JOIN paciente p ON h.id_paciente = p.id INNER JOIN descripcion d ON d.id_historia = h.id 
+        INNER JOIN medico m ON d.id_medico = m.id WHERE p.id = $id_paciente;";
+
+        $resultado2 = $con->query($sql2);
+
+
+
+    }elseif ($_SESSION['nivel']== 'paciente') {
+        
+        $fecha = $_GET['fecha'];
+
+        $sql2 = "SELECT d.sintomas as 'sintoma', d.diagnostico as 'diagnostico', d.tratamiento as 'tratamiento', d.receta as 'receta', 
+        d.fecha as 'fecha_consulta', m.nombre as 'nombre_medico', m.apellido as 'apellido_medico' 
+        FROM historia h INNER JOIN paciente p ON h.id_paciente = p.id INNER JOIN descripcion d ON d.id_historia = h.id INNER JOIN 
+        medico m ON d.id_medico = m.id WHERE d.fecha = $fecha AND h.id_paciente = $id_paciente;";
+
+        $resultado2 = $con->query($sql2);
+
+
+    }elseif ($_SESSION['nivel'] == 'medico'){
+
+        $sql2 = "SELECT d.sintomas as 'sintoma', d.diagnostico as 'diagnostico', d.tratamiento as 'tratamiento', d.receta as 'receta', 
+        d.fecha as 'fecha_consulta', m.nombre as 'nombre_medico', m.apellido as 'apellido_medico' 
+        FROM historia h INNER JOIN paciente p ON h.id_paciente = p.id INNER JOIN descripcion d ON d.id_historia = h.id 
+        INNER JOIN medico m ON d.id_medico = m.id WHERE p.id = $id_paciente;";
+
+        $resultado2 = $con->query($sql2);
+
+    }
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-  .center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* height: 50vh; */
-    background-color: #00BFFF;
-
-  }
-  .code-container {
-    border: 1px solid #ccc;
-    padding: 40px;
-    /* width: 50%;  */
-    background-color: #f5f5f5;
-  }
-  .fondo {
-   background-color: #00BFFF;
-   /* Recuerda que los botones html traen un borde por defecto que se suele ver bastante mal, 
-   puedes quitarlo en la siguiente linea */
-   border: none;
-  }
-  .encabezado{
-
-    text-align: center;
-  }
-  .boton{
-    display: flex;
-    justify-content: center;
-    border: 1px solid #ccc;
-    padding: 15px;
-    background-color: #f5f5f5;
-    position: absolute; /* Cambiar a "relative" si prefieres movimiento relativo */
-    
-    left: 580px;
-    margin-top: auto;
-  }
-/* Tablas */
-    
- .table-container {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px 0;
- }
-
- .table-container th,
- .table-container td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
- }
-
- .table-container th {
-    background-color: #f2f2f2;
-    font-weight: bold; 
- }
- 
- .table-cell {
-    text-align: center;
-  }
-
-</style>
+    <title>Título de tu página</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body >
-<div class="encabezado"><steam class=" "><h1> Historia de usuario </h1> </steam> </div>
-<div class="center-content">
-
-  <div class="code-container">
- 
+<body>
+    <h1 style = "text-align: center;"> MEDICOS</h1>
     <?php
-      include('conexion.php');
-      $id = $_GET['id'];
-      // Consulta SQL para obtener los datos de la tabla "historia"
-      
-      $query = "SELECT h.*, p.* FROM historia h INNER JOIN paciente p ON h.id_paciente = p.id WHERE h.id_paciente = $id";
-      $resultado = $con->query($query);
+    if ($resultado->num_rows > 0) {
+        $data = $resultado->fetch_assoc();
+        ?>
+        <p>NOMBRE</p>
+        <p> <?php echo $data['nombre_paciente'] ?></p>
 
-      if ($resultado->num_rows > 0) {
-         echo "<table border='1'>
-         <tr class='table-container'>
-         <th>Nombre</th>
-         <th>Apellido</th>
-         <th>Altura</th>
-         <th>Genero</th>
-         <th>Peso</th>
-         <th>Dirección</th>
-         <th>Número de Emergencia</th>
-         <th>Tipo de Sangre</th>
-         </tr>";
-
-         $fila = $resultado->fetch_assoc();
-            echo "<tr class= 'table-container th'>";
-            // echo "<td class='table-cell'>" . $fila['id'] . "</td>";
-            echo "<td class='table-cell'>" . $fila['nombre'] . "</td>";
-            echo "<td class='table-cell'>" . $fila['apellido'] . "</td>";
-            echo "<td class='table-cell'>" . $fila['altura'] . "</td>";
-            echo "<td class='table-cell'>" . $fila['genero'] . "</td>";
-            echo "<td class='table-cell'>" . $fila['peso'] . "</td>";
-            echo "<td class='table-cell'>" . $fila['direccion'] . "</td>";
-            echo "<td class='table-cell'>" . $fila['num_emergencia'] . "</td>";
-            echo "<td class='table-cell'>" . $fila['tipo_sanngre'] . "</td>";
-            // echo "<td class='table-cell'>" . $fila['id_paciente'] . "</td>";
-            echo "</tr>";
+        <p>APELLIDO</p>
+        <p> <?php echo $data['apellido_paciente'] ?></p>
         
-        echo "</table>";
-     } else {
-       echo "No se encontraron resultados.";
-     }
+        <p>FECHA DE NACIMIENTO</p>
+        <p> <?php echo $data['fech_nacimiento'] ?></p>
+        
+        <p>PESO</p>
+        <p> <?php echo $data['peso'] ?></p>
 
-    // Cerrar la conexión
-     $con->close();
+        <p>ALTURA</p>
+        <p> <?php echo $data['altura'] ?></p>
+
+        <p>tipo sangre</p>
+        <p> <?php echo $data['tipo_sangre'] ?></p>
+
+        <p>alergia</p>
+        <p> <?php echo $data['alergia'] ?></p>
+        <?php
+        if($resultado2->num_rows > 0){ ?>
+            <table>
+                <tr>
+                    <th>Sintomas</th>
+                    <th>Diagnostico</th>
+                    <th>Tratamiento</th>
+                    <th>Receta</th>
+                    <th>Fecha</th>
+                    <th>Medico</th>
+                </tr>
+                <?php while ($row = $resultado2->fetch_assoc()) { ?>
+                    <tr>
+                        <td><?php echo $row['sintoma'] ?></td>
+                        <td><?php echo $row['diagnostico'] ?></td>
+                        <td><?php echo $row['tratamiento'] ?></td>
+                        <td><?php echo $row['receta'] ?></td>
+                        <td><?php echo $row['fecha_consulta'] ?></td>
+                        <td><?php echo $row['nombre_medico']." ".$row['apellido_medico']?> </td>
+                    </tr>
+                <?php } ?>
+            </table>
+        <?php
+        } else {?>
+
+            <!-- ponerle diseño y centrar dentro del div -->
+            <div> 
+                <P> NO HAY HISTORIAS QUE MOSTRAR </p>
+            </div>
+            <?php
+        }
+    }
+    $con->close();
     ?>
-
-  </div>
-</div>
-<!-- <a href="javascript: " <button class="boton" onclick="location.href='historia.html'">Cerrar sesion</button></a> -->
-
 </body>
 </html>
+
+
+
