@@ -1,42 +1,62 @@
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 .table-container{
-    padding: 0 10%;
-    margin: 40px auto 0;
+    padding: 0;
+    margin: 100px auto 0;
 }
 .heading{
     font-size: 40px;
     text-align: center;
-    color: #171a4a;
-    margin-bottom: 20px;
+    color: #CF3454;
+    margin-bottom: 10px;
 }
 .table{
     width: 100%;
     border-collapse: collapse;
 }
 .table thead{
-    background-color: #171a4a;
+    background-color: #CF3454;
 }
 .table thead tr th {
-    font-size: 20px;
-    front-weight: medium;
+    font-size: 15px;
     letter-spacing: 0.40px;
+    text-align: center;
     color: #ffffff;
     opacity: 1;
     padding: 12px;
     vertical-align: top;
-    border: 1px solid #dee2e685;
+    border: 1px solid #ffffff;
 }
 .table tbody tr td{
-    font-size: 20px;
+    font-size: 15px;
     letter-spacing: 0.40px;
     font-weight: normal;
-    color: #f1f1f1;
-    background-color: #2f2c79;
+    color: #CF3454;
+    background-color: #ffffff;
     padding: 8px;
     text-align: center;
-    border: 1px solid #dee2e685;
+    border: 1px solid #CF3454;
+}
+.primero{
+    background: #CF3454;
+    border: none;
+    padding: .50em;
+    width: 90px;
+    height: 30px;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+    border-radius: 25px;
+}
+.segundo{
+    background: #283E61;;
+    border: none;
+    padding: .50em;
+    width: 90px;
+    height: 30px;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+    border-radius: 25px;
 }
