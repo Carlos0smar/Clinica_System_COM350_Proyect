@@ -10,7 +10,7 @@
 .heading{
     font-size: 40px;
     text-align: center;
-    color: #7f00b2;
+    color: #283E61;
     margin-bottom: 20px;
 }
 .table{
@@ -18,25 +18,25 @@
     border-collapse: collapse;
 }
 .table thead{
-    background-color: #7f00b2;
+    background-color: #283E61;
 }
 .table thead tr th {
     font-size: 20px;
-    front-weight: medium;
     letter-spacing: 0.45px;
-    color: #ffffff;
+    color: #E6F0F6;
     opacity: 1;
     padding: 12px;
     vertical-align: top;
-    border: 1px solid #dee2e685;
+    text-align: center;
+    border: 1px solid #E6F0F6;
 }
 .table tbody tr td{
     font-size: 20px;
     letter-spacing: 0.40px;
     font-weight: normal;
-    color: #f1f1f1;
-    background-color: #ab49cc;
+    color: #283E61;
+    background-color: #ffffff;
     padding: 8px;
     text-align: center;
-    border: 1px solid #dee2e685;
+    border: 1px solid #283E61;
 }
