@@ -3,7 +3,6 @@
     <head>
         <title></title>
         <link rel="stylesheet" type="text/css" href="css/Read_Paciente_Admin.css">
-        <script src="https://kit.fontawesome.com/21b2631e7e.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="table-container">
@@ -36,9 +35,9 @@
                                 <td><?= $datos['email']?></td>
                                 
 						<td>
-                            <a href="javascript: formHistoria('<?php echo $datos['id']?>')" class="btn" style="background-color: white; margin: 5px;"> Registrar</a>
-                            <a href="javascript: MostrarHistoria('<?php echo $datos['id']?>')" class="btn" style="background-color: white"> Mostar</a>
-                            <!-- <a href="Acciones" class="btn"><i class="fa-solid fa-eye" style="color: #f0f0f0;"></i></i></a> -->
+                            <a href="javascript: formHistoria('<?php echo $datos['id']?>')" class="primero" >Registrar</a>
+                            <a href="javascript: MostrarHistoria('<?php echo $datos['id']?>')" class="segundo"> Mostrar</a>
+                            
                         </td> 
 					</tr>
 				<?php }
