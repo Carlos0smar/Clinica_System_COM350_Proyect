@@ -20,12 +20,14 @@
     border-radius: 3px;
 }
 .form-textarea {
-    width: 100%;
+    width: 60%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
     resize: vertical;
+
+    margin-left: 160px;
 }
 .form-button {
     background-color: #4CAF50;
@@ -34,7 +36,26 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+
+    margin-left: 160px;
 }
 .form-button:hover {
     background-color: #45a049;
 }
+
+.column {
+    float: left; 
+    width: 30%; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    margin-left: 150px;
+    
+}
+.column-a {
+    
+    float: right;
+    width: 30%; 
+    padding: 20px; 
+    box-sizing: border-box;
+}
+
