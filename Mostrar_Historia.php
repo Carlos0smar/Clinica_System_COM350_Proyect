@@ -56,6 +56,9 @@ if(isset($_SESSION['nivel'])){
 <head>
     <title>Título de tu página</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="EstiloTable.css">
+   
 </head>
 <body>
     <h1 style = "text-align: center;"> MEDICOS</h1>
@@ -63,48 +66,91 @@ if(isset($_SESSION['nivel'])){
     if ($resultado->num_rows > 0) {
         $data = $resultado->fetch_assoc();
         ?>
-        <p>NOMBRE</p>
-        <p> <?php echo $data['nombre_paciente'] ?></p>
+     
+        <div class="column">
 
-        <p>APELLIDO</p>
-        <p> <?php echo $data['apellido_paciente'] ?></p>
+        <!-- <p>NOMBRE</p>
+        <p> <?php echo $data['nombre_paciente'] ?></p> -->
+
+        <label class="form-label">Nombre:</label><br>
+        <input type="text" class="form-field" name="nombre" value="<?php echo $data['nombre_paciente'] ?>" readonly>
+
+        <label class="form-label">APELLIDO:</label><br>
+        <input type="text" class="form-field" name="nombre" value="<?php echo $data['apellido_paciente'] ?>" readonly>
         
-        <p>FECHA DE NACIMIENTO</p>
-        <p> <?php echo $data['fech_nacimiento'] ?></p>
+        <!-- <p>APELLIDO</p>
+        <p> <?php echo $data['apellido_paciente'] ?></p> -->
         
-        <p>PESO</p>
-        <p> <?php echo $data['peso'] ?></p>
+        <label class="form-label">FECHA DE NACIMIENTO:</label><br>
+        <input type="text" class="form-field" name="nombre" value="<?php echo $data['fech_nacimiento'] ?>" readonly>
 
-        <p>ALTURA</p>
-        <p> <?php echo $data['altura'] ?></p>
+        <!-- <p>FECHA DE NACIMIENTO</p>
+        <p> <?php echo $data['fech_nacimiento'] ?></p> -->
+         
+        <!-- <p>PESO</p>
+        <p> <?php echo $data['peso'] ?></p> -->
+        <label class="form-label">PESO:</label><br>
+        <input type="text" class="form-field" name="nombre" value="<?php echo $data['peso'] ?>" readonly>
 
-        <p>tipo sangre</p>
-        <p> <?php echo $data['tipo_sangre'] ?></p>
+        </div>
 
-        <p>alergia</p>
-        <p> <?php echo $data['alergia'] ?></p>
+        <div class="column">
+
+        <label class="form-label">ALTURA:</label><br>
+        <input type="text" class="form-field" name="nombre" value="<?php echo $data['altura'] ?>" readonly>
+
+        <!-- <p>ALTURA</p>
+        <p> <?php echo $data['altura'] ?></p> -->
+
+
+        <!-- <p>tipo sangre</p>
+        <p> <?php echo $data['tipo_sangre'] ?></p> -->
+
+        <label class="form-label">TIPO DE SANGRE:</label><br>
+        <input type="text" class="form-field" name="nombre" value="<?php echo $data['tipo_sangre'] ?>" readonly>
+
+        <label class="form-label">ALERGIA:</label><br>
+        <input type="text" class="form-field" name="nombre" value="<?php echo $data['alergia'] ?>" readonly>      
+        <!-- <p>alergia</p>
+        <p> <?php echo $data['alergia'] ?></p>-->
+        </div>
+       
+
+        
         <?php
         if($resultado2->num_rows > 0){ ?>
-            <table>
-                <tr>
-                    <th>Sintomas</th>
-                    <th>Diagnostico</th>
-                    <th>Tratamiento</th>
-                    <th>Receta</th>
-                    <th>Fecha</th>
-                    <th>Medico</th>
+     
+            <h4>Datos Clinicos</h4>
+            <table class="table">
+                <tr >
+                    <th class="th">Sintomas</th>
+                    <th class="th">Diagnostico</th>
+                    <th class="th">Tratamiento</th>
+                
                 </tr>
                 <?php while ($row = $resultado2->fetch_assoc()) { ?>
                     <tr>
                         <td><?php echo $row['sintoma'] ?></td>
                         <td><?php echo $row['diagnostico'] ?></td>
                         <td><?php echo $row['tratamiento'] ?></td>
+                      
+                    </tr>
+                    <tr>
+                       <th class="th">Receta</th>
+                       <th class="th">Fecha</th>
+                       <th class="th">Medico</th>
+                    </tr>
+                    <tr>
                         <td><?php echo $row['receta'] ?></td>
                         <td><?php echo $row['fecha_consulta'] ?></td>
                         <td><?php echo $row['nombre_medico']." ".$row['apellido_medico']?> </td>
                     </tr>
+                    
                 <?php } ?>
-            </table>
+               
+       
+        </div>
+        
         <?php
         } else {?>
 
