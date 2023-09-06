@@ -187,6 +187,7 @@ function Registrar_historia_for_medico(id) {
 
 function Historia_for_paciente(fecha, id) {
   console.log(id);
+  console.log(fecha + "fecha");
   var contenedor;
   contenedor = document.getElementById('contenido');
   fetch('Mostrar_Historia.php?id='+id+'&fecha='+fecha)

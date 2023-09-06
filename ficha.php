@@ -36,12 +36,19 @@
                 if ($resultado->num_rows > 0) {
                     while($datos = $resultado -> fetch_assoc()) { ?>
                         <tr>
+                            <?php $FECHA = $datos['Fecha'] ?>
                             <td><?= $datos['Nombre_Medico'] ?></td>
                             <td><?= $datos['Apellido_Medico'] ?></td>
                             <td><?= $datos['Telefono_Medico'] ?></td>
-                            <td><?= $datos['Fecha'] ?></td>
+                            <td><?= $FECHA ?></td>
                             <td><?= $datos['Hora'] ?></td>
-                            <td><a href="javascript: Historia_for_paciente(<?php echo $datos['Fecha']?>, <?php echo $paciente_id ?>)"<button type="button" class="ver">Ver</button></td>
+                            <!-- <td><a href="javascript: Historia_for_paciente(<?php echo $FECHA?>, <?php echo $paciente_id ?>)"<button type="button" class="ver">Ver</button></td> -->
+                            <td>
+                            <a href="javascript:void(0);" onclick="Historia_for_paciente('<?php echo $FECHA; ?>', <?php echo $paciente_id; ?>)">
+                                <button type="button" class="ver">Ver</button>
+                            </a>
+                            </td>
+
                         </tr>
                     <?php }     
                 }?>

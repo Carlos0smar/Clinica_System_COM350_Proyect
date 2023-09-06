@@ -30,7 +30,7 @@ if(isset($_SESSION['nivel'])){
         $sql2 = "SELECT d.sintomas as 'sintoma', d.diagnostico as 'diagnostico', d.tratamiento as 'tratamiento', d.receta as 'receta', 
         d.fecha as 'fecha_consulta', m.nombre as 'nombre_medico', m.apellido as 'apellido_medico' 
         FROM historia h INNER JOIN paciente p ON h.id_paciente = p.id INNER JOIN descripcion d ON d.id_historia = h.id INNER JOIN 
-        medico m ON d.id_medico = m.id WHERE d.fecha = $fecha AND h.id_paciente = $id_paciente;";
+        medico m ON d.id_medico = m.id WHERE d.fecha = '$fecha' AND h.id_paciente = $id_paciente;";
 
         $resultado2 = $con->query($sql2);
 
