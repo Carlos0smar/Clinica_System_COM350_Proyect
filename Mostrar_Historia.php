@@ -171,8 +171,9 @@ if(isset($_SESSION['nivel'])){
             if($_SESSION['nivel'] == 'paciente'){?>
                 <a href="javascript: cargarContenido('ficha.php') "><button class="boton">Volver</button></a>
                 <?php
-            }elseif($_SESSION['nivel'] == 'paciente') {?>
+            }elseif($_SESSION['nivel'] == 'medico') {?>
                 <a href="javascript: cargarContenido('Read_Citas_Medico.php') "><button class="boton">Volver</button></a>
+                <a href="javascript: formDescripcion(<?php echo $data['id_historia']?>) "><button class="boton">Nueva Historia</button></a>
                 <?php
             }else{?>
             <a href="javascript: cargarContenido('Read_Paciente_Admin.php') "><button class="boton">Volver</button></a>
