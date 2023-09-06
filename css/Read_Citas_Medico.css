@@ -40,3 +40,22 @@
     text-align: center;
     border: 1px solid #283E61;
 }
+
+.boton {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.boton:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último botón para evitar espacio adicional */
+}
+
+.boton:hover {
+    background-color: #2980b9;
+}

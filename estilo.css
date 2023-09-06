@@ -59,3 +59,40 @@
     box-sizing: border-box;
 }
 
+
+/* Estilo para separar los botones y darles diseño */
+.boton-container {
+    color: #44d7eb;
+    /* width: 100%;
+    height: 70px; */
+    /* margin-left: 170px;
+    margin-top: 35%; */
+
+    text-align: center;
+    margin-top: 20px;
+}
+
+.boton {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.boton:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último botón para evitar espacio adicional */
+}
+
+.boton:hover {
+    background-color: #2980b9;
+}
+
+h4 {
+    color: #44d7eb;
+    margin-left: 300px;
+    margin-top: 40%;
+}

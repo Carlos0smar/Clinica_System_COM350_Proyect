@@ -41,7 +41,7 @@
                             <td><?= $datos['Telefono_Medico'] ?></td>
                             <td><?= $datos['Fecha'] ?></td>
                             <td><?= $datos['Hora'] ?></td>
-                            <td><button type="button" class="ver">Ver</button></td>
+                            <td><a href="javascript: Historia_for_paciente(<?php echo $datos['Fecha']?>, <?php echo $paciente_id ?>)"<button type="button" class="ver">Ver</button></td>
                         </tr>
                     <?php }     
                 }?>

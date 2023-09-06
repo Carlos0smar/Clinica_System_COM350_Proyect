@@ -1,3 +1,8 @@
+<?php
+
+$id= $_GET['id'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +19,7 @@
         <div class="registro">
             <div class="registro-form">
                 <h3>Historia</h3>
-                <form action="">
+                <form action="javascript: Registrar_historia_for_medico(<?php echo $id ?>)" id="form_descripcion">
                     <p>
                         <label>Sintomas:</label>
                         <textarea type="text" id = "sintomas" name="sintomas" rows ="10" colums="18"  required></textarea>                       
@@ -32,7 +37,7 @@
                         <textarea type="textarea" id = "receta" name="receta"  rows ="10" colums="18" required></textarea>
                     </p>
                     <p class = "bloque">
-                        <button type= "registrar"> 
+                        <button type= "submit"> 
                             Registrar
                         </button>
                     </p>

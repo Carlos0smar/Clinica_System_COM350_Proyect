@@ -85,7 +85,14 @@ session_start();
 					<!-- BUTTON as Paciente -->
 					<?php
 					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 'paciente' ) {?>
-							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Create_ficha_interface.php')">Ficha</a></li>
+							<li class="nav-item"><a class="nav-link" href="javascript:cargarSacarFicha()">Ficha</a></li>
+							<!-- <li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Create_ficha_interface.php')">Ficha</a></li> -->
+						<?php   
+					}?>
+					<?php
+					if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 'paciente' ) {?>
+							<li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('ficha.php')">Citas</a></li>
+							<!-- <li class="nav-item"><a class="nav-link" href="javascript:cargarContenido('Create_ficha_interface.php')">Ficha</a></li> -->
 						<?php   
 					}?>
 					<!-- <li class="nav-item"><a class="nav-link" href="#">Services</a></li> -->
@@ -110,52 +117,6 @@ session_start();
 							<li class="nav-item"><a class="nav-link" href="javascript:cerrarSession()">Cerrar sesión</a></li>
 						<?php
 					}?>
-					<!-- <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Department <i class="icofont-thin-down"></i></a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown02">
-							<li><a class="dropdown-item" href="department.html">Departments</a></li>
-							<li><a class="dropdown-item" href="department-single.html">Department Single</a></li>
-                    
-							<li class="dropdown dropdown-submenu dropright">
-								<a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0301" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
-			
-								<ul class="dropdown-menu" aria-labelledby="dropdown0301">
-									<li><a class="dropdown-item" href="index.html">Submenu 01</a></li>
-									<li><a class="dropdown-item" href="index.html">Submenu 02</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li> -->
-
-					<!-- <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown03">
-							<li><a class="dropdown-item" href="doctor.html">Doctors</a></li>
-							<li><a class="dropdown-item" href="doctor-single.html">Doctor Single</a></li>
-							<li><a class="dropdown-item" href="appoinment.html">Appoinment</a></li>
-
-							<li class="dropdown dropdown-submenu dropleft">
-								<a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
-						
-								<ul class="dropdown-menu" aria-labelledby="dropdown0501">
-									<li><a class="dropdown-item" href="index.html">Submenu 01</a></li>
-									<li><a class="dropdown-item" href="index.html">Submenu 02</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li> -->
-
-					<!-- <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="blog-sidebar.html" id="dropdown05" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">Blog <i class="icofont-thin-down"></i></a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown05">
-							<li><a class="dropdown-item" href="blog-sidebar.html">Blog with Sidebar</a></li>
-							<li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
-						</ul>
-					</li> -->
-					<!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
 					<?php
 					if (!isset($_SESSION['nivel'])) {?>
 						<div class="btn-container ">

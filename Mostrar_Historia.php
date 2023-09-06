@@ -4,7 +4,7 @@ session_start();
 
 $id_paciente = $_GET['id'];
 
-$sql = "SELECT p.id, p.nombre as 'nombre_paciente', p.apellido as 'apellido_paciente', h.fecha_nac as 'fech_nacimiento', 
+$sql = "SELECT  p.nombre as 'nombre_paciente', p.apellido as 'apellido_paciente', h.id as 'id_historia', h.fecha_nac as 'fech_nacimiento', 
 h.peso as 'peso', h.altura as 'altura', h.tipo_sanngre as 'tipo_sangre', h.alergia as 'alergia'
 FROM historia h INNER JOIN paciente p ON h.id_paciente = p.id WHERE p.id = $id_paciente;";
 
@@ -61,11 +61,11 @@ if(isset($_SESSION['nivel'])){
    
 </head>
 <body>
-    <h1 style = "text-align: center;"> MEDICOS</h1>
     <?php
     if ($resultado->num_rows > 0) {
         $data = $resultado->fetch_assoc();
         ?>
+        <h1 style = "text-align: center;"> DATOS MEDICOS</h1>
      
         <div class="column">
 
@@ -114,55 +114,82 @@ if(isset($_SESSION['nivel'])){
         <!-- <p>alergia</p>
         <p> <?php echo $data['alergia'] ?></p>-->
         </div>
-       
-
+        <?php } ?>
+    
+    <h4 style="color: black;">HISTORIAS</h4>
+    
         
         <?php
-        if($resultado2->num_rows > 0){ ?>
+    if($resultado2->num_rows > 0){ ?>
      
-            <h4>Datos Clinicos</h4>
             <table class="table">
                 <tr >
                     <th class="th">Sintomas</th>
                     <th class="th">Diagnostico</th>
                     <th class="th">Tratamiento</th>
-                
+                    <th class="th">Receta</th>
+                    <th class="th">Fecha</th>
+                    <th class="th">Medico</th>
                 </tr>
                 <?php while ($row = $resultado2->fetch_assoc()) { ?>
-                    <tr>
                         <td><?php echo $row['sintoma'] ?></td>
                         <td><?php echo $row['diagnostico'] ?></td>
                         <td><?php echo $row['tratamiento'] ?></td>
-                      
-                    </tr>
-                    <tr>
-                       <th class="th">Receta</th>
-                       <th class="th">Fecha</th>
-                       <th class="th">Medico</th>
-                    </tr>
-                    <tr>
                         <td><?php echo $row['receta'] ?></td>
                         <td><?php echo $row['fecha_consulta'] ?></td>
                         <td><?php echo $row['nombre_medico']." ".$row['apellido_medico']?> </td>
                     </tr>
-                    
                 <?php } ?>
-               
-       
+            </table>
         </div>
-        
+        <?php
+    }?>
+
+        <?php
+        if($_SESSION['nivel'] == 'paciente'){?>
+            <a href="javascript: cargarContenido('ficha.php') "><button class="boton">Volver</button></a>
+            <?php
+        }
+
+        if($_SESSION['nivel']=='medico'){?>
+            <div class="boton-container">
+                
+                <a href="javascript: cargarContenido('Read_Citas_Medico.php') "><button class="boton">Volver</button></a>
+                <a href="javascript: formDescripcion(<?php echo $data['id_historia']?>) "><button class="boton">Nueva Historia</button></a>
+            </div>
+        <?php
+
+        if($_SESSION['nivel']=='administrador'){?>
+            <div class="boton-container">
+                <a href="javascript: cargarContenido('Read_Paciente_Admin.php') "><button class="boton">Volver</button></a>
+            </div>
+        <?php
+        }?>
+
         <?php
         } else {?>
 
             <!-- ponerle diseño y centrar dentro del div -->
-            <div> 
-                <P> NO HAY HISTORIAS QUE MOSTRAR </p>
+            <div class= "boton-container" > 
+                <P style= "text-align: center; color: black;"> NO HAY HISTORIAS QUE MOSTRAR </p>
+                <?php
+                if($_SESSION['nivel'] == 'paciente'){?>
+                    <a href="javascript: cargarContenido('ficha.php') "><button class="boton">Volver</button></a>
+                    <?php
+                }elseif($_SESSION['nivel'] == 'paciente') {?>
+                    <a href="javascript: cargarContenido('Read_Citas_Medico.php') "><button class="boton">Volver</button></a>
+                    <?php
+                }else{?>
+                <a href="javascript: cargarContenido('Read_Paciente_Admin.php') "><button class="boton">Volver</button></a>
+                <?php
+                }?>
             </div>
             <?php
         }
-    }
+    
     $con->close();
     ?>
+
 </body>
 </html>
 

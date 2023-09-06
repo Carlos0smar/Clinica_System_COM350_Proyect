@@ -6,7 +6,7 @@
     <title>Reserva en el Hospital</title>
     
     <!-- Enlace al archivo de estilos de Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- Estilos personalizados -->
     <style>
         body {
@@ -127,7 +127,7 @@
          margin-right: 20px;
       }
     </style>
-    <script src="js/fetch.js"></script>
+    <!-- <script src="js/fetch.js"></script> -->
 </head>
 <body>
 
@@ -155,10 +155,18 @@ $resultado2 = $con->query($sql2);
 							<img src="images/22.jpg" alt="Mi Imagen"  width="1350" height="300">
 						</div>
 						<div class="contenedor-superpuesto">
-							<div class="">
-								<label for="hora" class="form-label" required>Hora:</label>
-								<input type="time" class="form-label" id="hora" name="hora"  required>
+							<div class="contenedor3">
+								<label for="dia" class="form-label" required>Día:</label>
+                                <select class="form-select" id="dia" name="dia" required ></select>
+                                <p id="fecha-seleccionada"></p>
+
 							</div>
+                            <div class="contendor3">
+								<label for="hora" class="form-label" required>Hora:</label>
+                                <select class="form-select" id="hora" name="hora"  ></select>
+                                <script>console.log('hola')</script>
+
+                            </div>
 							<div class="contenedor3">
 								<label for="medico" class="form-label" required>Médico</label>
 								<select class="form-select" id="id_medico" name="id_medico" required>
@@ -187,20 +195,28 @@ $resultado2 = $con->query($sql2);
 					<div class="contenedor3">
 					<form >
 						<?php 
-						$horas = array(   "08:00 AM",
-						"09:00 AM",
-						"10:00 AM",
-						"11:00 AM",
-						"12:00 PM",
-						"01:00 PM",
-						"02:00 PM",
-						"03:00 PM",
-						"04:00 PM",
-						"05:00 PM");
+						$horas = array(   "08 AM",
+						"09 AM",
+						"10 AM",
+						"11 AM",
+						"12 PM",
+						"01 PM",
+						"02 PM",
+						"03 PM",
+						"04 PM",
+						"05 PM");
 						?>
 					</form >
 					</div>    
-					<table style='border: 1px solid black; border-collapse: collapse; background-color: white; '><?php
+					<div id="tabla_horarios">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- 
+    <table style='border: 1px solid black; border-collapse: collapse; background-color: white; ' id="tabla_horarios"><?php
 						if ($resultado2->num_rows > 0) {
 						?>
 							<tr style='border: 1px solid black'>
@@ -226,12 +242,80 @@ $resultado2 = $con->query($sql2);
 							} ?>
 							<?php
 						}?>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+					</table> -->
+
 <!-- Enlace al archivo de scripts de Bootstrap (opcional si no utilizas componentes que requieran JavaScript) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script> -->
+
+<!-- <script>
+    console.log('entra');
+
+
+    const hora = document.getElementById('hora');
+    const horas = ["8", "9","10", "11", "14", "15", "16", "17"]
+    const eventHora= new Date();
+
+    for (let i = 0; i <horas.length; i++) {
+        const option = document.createElement("option");
+
+        // eventHora.setHours(horas[i], "0", "0");
+
+        // const horaActual = eventHora.getHours();
+        // const minutosActual = eventHora.getMinutes();
+        var horaFormateada = `${horas[i]}:${'00'}:${'00'}`;
+
+        if(horas[i] == "8" || horas[i] == "9"){
+            horaFormateada = `${'0'}${horas[i]}:${'00'}:${'00'}`;
+        }
+
+
+        option.value = horaFormateada;
+        option.text =  horas[i] + ":00";
+        hora.appendChild(option);
+    }
+
+   
+    // hora.addEventListener("change", function() {
+    //     const opcionSeleccionada = selectDiaSemana.options[selectDiaSemana.selectedIndex];
+    //     const fecha = opcionSeleccionada.dataset.fecha;
+    //     fechaSeleccionada.textContent = `Fecha seleccionada: ${fecha}`;
+    // });
+    const selectDiaSemana = document.getElementById("dia");
+    const fechaSeleccionada = document.getElementById("fecha-seleccionada");
+
+    const diasSemana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
+    const fechaActual = new Date();
+
+    // Obtén el día de la semana actual (0 para Domingo, 1 para Lunes, etc.)
+    const diaActual = fechaActual.getDay();
+
+    // Calcula la fecha del primer día de la semana (Domingo)
+    const primerDiaSemana = new Date(fechaActual);
+    // primerDiaSemana.setDate(fechaActual.getDate() - diaActual);
+
+    // Genera las opciones del select
+    for (let i = 0; i < diasSemana.length; i++) {
+        const option = document.createElement("option");
+
+        option.text = diasSemana[i];
+        
+        // Calcula la fecha correspondiente al día de la semana
+        const fechaDiaSemana = new Date(primerDiaSemana);
+        fechaDiaSemana.setDate(primerDiaSemana.getDate() + i);
+
+        // Formatea la fecha en formato "dd/mm/yyyy"
+        const dd = String(fechaDiaSemana.getDate()).padStart(2, "0");
+        const mm = String(fechaDiaSemana.getMonth() + 1).padStart(2, "0");
+        const yyyy = fechaDiaSemana.getFullYear();
+        const fechaFormateada = `${dd}d${mm}s${yyyy}`;
+        console.log(fechaFormateada);
+        option.value = fechaFormateada;
+        // option.dataset.fecha = fechaFormateada;
+        selectDiaSemana.appendChild(option);
+    }
+    
+</script> -->
+
+
 </body>
 </html>
