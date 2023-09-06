@@ -143,9 +143,6 @@ if(isset($_SESSION['nivel'])){
             </table>
         </div>
         <?php
-    }?>
-
-        <?php
         if($_SESSION['nivel'] == 'paciente'){?>
             <a href="javascript: cargarContenido('ficha.php') "><button class="boton">Volver</button></a>
             <?php
@@ -158,37 +155,36 @@ if(isset($_SESSION['nivel'])){
                 <a href="javascript: formDescripcion(<?php echo $data['id_historia']?>) "><button class="boton">Nueva Historia</button></a>
             </div>
         <?php
-
+        }
         if($_SESSION['nivel']=='administrador'){?>
             <div class="boton-container">
                 <a href="javascript: cargarContenido('Read_Paciente_Admin.php') "><button class="boton">Volver</button></a>
             </div>
         <?php
-        }?>
-
-        <?php
-        } else {?>
-
-            <!-- ponerle diseño y centrar dentro del div -->
-            <div class= "boton-container" > 
-                <P style= "text-align: center; color: black;"> NO HAY HISTORIAS QUE MOSTRAR </p>
-                <?php
-                if($_SESSION['nivel'] == 'paciente'){?>
-                    <a href="javascript: cargarContenido('ficha.php') "><button class="boton">Volver</button></a>
-                    <?php
-                }elseif($_SESSION['nivel'] == 'paciente') {?>
-                    <a href="javascript: cargarContenido('Read_Citas_Medico.php') "><button class="boton">Volver</button></a>
-                    <?php
-                }else{?>
-                <a href="javascript: cargarContenido('Read_Paciente_Admin.php') "><button class="boton">Volver</button></a>
-                <?php
-                }?>
-            </div>
-            <?php
         }
-    
-    $con->close();
-    ?>
+    } else {?>
+
+        <!-- ponerle diseño y centrar dentro del div -->
+        <div class= "boton-container" > 
+            <P style= "text-align: center; color: black;"> NO HAY HISTORIAS QUE MOSTRAR </p>
+            <?php
+            if($_SESSION['nivel'] == 'paciente'){?>
+                <a href="javascript: cargarContenido('ficha.php') "><button class="boton">Volver</button></a>
+                <?php
+            }elseif($_SESSION['nivel'] == 'paciente') {?>
+                <a href="javascript: cargarContenido('Read_Citas_Medico.php') "><button class="boton">Volver</button></a>
+                <?php
+            }else{?>
+            <a href="javascript: cargarContenido('Read_Paciente_Admin.php') "><button class="boton">Volver</button></a>
+            <?php
+            }?>
+        </div>
+        <?php
+    }
+?>
+
+
+
 
 </body>
 </html>

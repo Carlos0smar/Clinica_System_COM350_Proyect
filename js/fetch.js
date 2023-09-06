@@ -54,7 +54,12 @@ function cargarSacarFicha() {
               
               // Calcula la fecha correspondiente al día de la semana
               const fechaDiaSemana = new Date(primerDiaSemana);
-              fechaDiaSemana.setDate(primerDiaSemana.getDate()+i-1);
+              // 
+              // 
+              // IMPORTANTE ESTO SE CORRIGE EL -2, HAY PROBLEMAS CONFORME PASAN LOS DIAS
+              // 
+              // 
+              fechaDiaSemana.setDate(primerDiaSemana.getDate()+i-2);
       
               // Formatea la fecha en formato "dd/mm/yyyy"
               const dd = String(fechaDiaSemana.getDate()).padStart(2, "0");
@@ -65,42 +70,67 @@ function cargarSacarFicha() {
               option.value = fechaFormateada;
               selectDiaSemana.appendChild(option);
           }
+          console.log("antes del fetch 2");
           
-          // tabla = document.getElementById('tabla_horarios');
-          // fetch('datosTabla.php')
-          // .then(response => response.text())
-          // .then(data => {
-          //   datos = JSON.parse(data);
-          //   tabla = dibujarTabla(datos);
-          //   tabla.innerHTML = html;});
+          var tabla = document.getElementById('tabla_horarios');
+          fetch('datosTabla.php')
+          .then(response => response.text())
+          .then(data => {
+          // console.log("antes JSON");
+            var datos = JSON.parse(data);
+            var result = dibujarTabla(datos);
+            tabla.innerHTML = result});
+          function dibujarTabla(datos){
+            console.log("dentro de la función");
+            var html = "";
+            html +=`
+            <table>
+              <thead>
+                <tr>
+                  <th> HORA </th>
+                  <th> LUENES </th>
+                  <th> MARTES </th>
+                  <th> MIERCOLES </th>
+                  <th> JUEVES </th>
+                  <th> VIERNES </th>
+                </tr>
+              </thead>
+              <tbody>`
+            for (let i = 0; i < 8 ; i++) {
+              html += `<tr>`;
+              html += `<td class="hora"> ${horas[i]}:00 </td>`;
+              for(let j = 0; j<5; j++){
+                var indice = 0;
+                console.log("al final");
+                var rojo = false;
+                while(indice < datos.length){
+                  var fila = datos[indice];
+                  const cadena = datos[indice].hora;
+                  const parte = cadena.split(":");
+                  const numero = parte[0];
+                  const day = new Date(fila.dia);
+                  if(numero == horas[i] && day.getDay() == j){
+                    // html += `<td><button class="${rojo ? 'red' : ''}"></button></td>`;
+                    html += `<td><button style="background-color: #CF3454;"></button></td>`;
+                    rojo = true;
+                    break;
+                  }
+                  indice++;
+                }
+                if(!rojo){
+                  html += `<td><button style="background-color: white;"></button></td>`;
+                }
+              }
+              html += `</tr>`;
+            }
+            html += `</tbody>
+            </table>`;
+            return html;
+          }
 
-          // function dibujarTabla(){
-          //   var html = "";
-          //   html += `<tr>`;
-          //   html += `<td> HORA </td>`;
-          //   html += `<td> LUENES </td>`;
-          //   html += `<td> MARTES </td>`;
-          //   html += `<td> MIERCOLES </td>`;
-          //   html += `<td> JUEVES </td>`;
-          //   html += `<td> VIERNES </td>`;
-          //   html += `</tr>`
-          //   for (let i = 0; i <= 7 ; i++) {
-          //     html += `<tr>`;
-          //     html += `<td> ${horas[i]}:00 </td>`;
-          //     for(let j = 1; i<=5; j++){
-          //       var indice = 0;
-          //       while(indice < datos.length){
-          //         var fila = datos[indice];
-          //         if(fila.hora.getHours() == i && fila.dia.getDay() == j){
-          //           html += `<td><button value="${}" ></button></</td>`;
-          //         }
-          //       }
-          //     }
-          //   }
-          // }
-          const scriptElement = document.createElement('script');
-          scriptElement.innerHTML = data;
-          document.body.appendChild(scriptElement);
+          // const scriptElement = document.createElement('script');
+          // scriptElement.innerHTML = data;
+          // document.body.appendChild(scriptElement);
       });
 }
 
