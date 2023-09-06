@@ -44,7 +44,7 @@ function cargarSacarFicha() {
       
           // Calcula la fecha del primer día de la semana (Domingo)
           const primerDiaSemana = new Date(fechaActual);
-          primerDiaSemana.setDate(fechaActual.getDate() - diaActual);
+          // primerDiaSemana.setDate(fechaActual.getDate() - diaActual);
       
           // Genera las opciones del select
           for (let i = 0; i < diasSemana.length; i++) {
@@ -53,13 +53,13 @@ function cargarSacarFicha() {
               option.text = diasSemana[i];
               
               // Calcula la fecha correspondiente al día de la semana
-              const fechaDiaSemana = new Date(primerDiaSemana-1);
+              const fechaDiaSemana = new Date(primerDiaSemana);
               // 
               // 
               // IMPORTANTE ESTO SE CORRIGE EL -2, HAY PROBLEMAS CONFORME PASAN LOS DIAS
               // 
               // 
-              fechaDiaSemana.setDate(primerDiaSemana.getDate()+i);
+              fechaDiaSemana.setDate(primerDiaSemana.getDate()+i-2);
       
               // Formatea la fecha en formato "dd/mm/yyyy"
               const dd = String(fechaDiaSemana.getDate()).padStart(2, "0");
