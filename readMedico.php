@@ -1,6 +1,9 @@
+
+
 <?php
 include('conexion.php');
-$sql = "SELECT id, nombre, apellido, edad, telefono, informacion, especialidad, email FROM medico";
+$sql = "select m.id as 'id', m.nombre as 'nombre', m.apellido as 'apellido' , m.edad as 'edad', m.telefono as 'telefono',m.email as 'email', 
+m.especialidad as 'especialidad', m.informacion as 'informacion', s.num_consultorio as 'sala' from sala s inner join medico m on s.id_medico = m.id";
 $resultado = $con->query($sql);
 ?>
 
@@ -9,6 +12,7 @@ $resultado = $con->query($sql);
 <head>
     <title>Título de tu página</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    
 </head>
 <body>
     <h1 style = "text-align: center;"> MEDICOS</h1>
@@ -24,6 +28,8 @@ $resultado = $con->query($sql);
                 <th>Email</th>
                 <th>Especialidad</th>
                 <th>Información</th>
+                <th>Sala</th>
+                <th>Editar</th>
             </tr>
             <?php while ($row = $resultado->fetch_assoc()) { ?>
                 <tr>
@@ -34,6 +40,11 @@ $resultado = $con->query($sql);
                     <td><?php echo $row['email'] ?></td>
                     <td><?php echo $row['especialidad'] ?></td>
                     <td><?php echo $row['informacion'] ?></td>
+                    <td><?php echo $row['sala']?></td>
+                    <td>
+                        <a href="javascript: registrarEdit('<?php echo $row['id']?>')" class="primero"> Editar</a>
+                            
+                    </td> 
                 </tr>
             <?php } ?>
         </table>
