@@ -279,6 +279,14 @@ function registrarMedico() {
         }
       });
 }
+function registrarEdit(id) {
+  console.log(id);
+  var contenedor;
+  contenedor = document.getElementById('contenido');
+  fetch('Edit_Medico_Sala.php?id='+id)
+      .then(response => response.text())
+      .then(data => { contenedor.innerHTML = data; });
+}
 
 function loginFetch() {
   
